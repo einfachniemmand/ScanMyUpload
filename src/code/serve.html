@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ScanMyUpload is an easy-to-use free online file system which is used for creating qr codes or links from files.">
+    <meta name="keyword" content="scanmyupload, qr, qrcode, file, createfromqr, file to qr, qr code, scan my upload, file sharing, share files">
+    <meta name="author" content="ScanMyUpload">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View file | ScanMyUpload</title>
+    <link rel="icon" type="image/png" href="https://static.alwaysdata.com/aldjango/img/favicon.png">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="logo-design" onclick="setTimeout(()=>{location.href='/'},100)">
+        <i class="fa-solid fa-qrcode"></i>
+        ScanMyUpload
+    </div>
+    <div class="content" style="opacity: 0;transition:150ms">
+        <div class="fileflex">
+            <div class="file" title="{{NAME}}"></div>
+            <div class="buttons">
+                <button class="download" onclick="setTimeout(app.file.download,150)">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                    Download
+                </button>
+                <button class="share" onclick="setTimeout(app.file.share,150)">
+                    <i class="fa-solid fa-share"></i>
+                </button>
+            </div>
+            <span class="expiration"></span>
+        </div>
+    </div>
+    <script>
+        app = {
+            file : {
+                code : location.pathname.split("/")[1],
+                type : "{{TYPE}}",
+                expires : new Date("{{EXPIRATION}}"),
+                format : "{{FORMAT}}",
+                name : "{{NAME}}",
+                download : ()=>{
+                    const a = document.createElement("a");
+                    a.href = app.file.code+"/dl/";
+                    a.download = app.file.name;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                },
+                share : ()=>{
+                    location.href = "/share/?file="+app.file.code;
+                }
+            },
+            serveContent : ()=>{
+                document.querySelector(".expiration").textContent = `Expires ${app.file.expires.getDate()}.${app.file.expires.getMonth()}.`;
+                if(app.file.type=="image"){
+                    app.e.view.innerHTML = `<img src="${"/uploads/"+app.file.code+"."+app.file.format}" draggable="false">`
+                }else if(app.file.type=="sound"){
+                    app.e.view.innerHTML = `<audio src="${"/uploads/"+app.file.code+"."+app.file.format}" onended="app.audio.ended()"></audio><div class="audio-controls"><i class="fa-solid fa-play" onclick='app.audio.toggle(this)'></i></div>`
+                }else if(app.file.type=="video"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-clapperboard"></i><span>${app.file.name}</span></div>`
+                }else if(app.file.type=="document"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-file-lines"></i><span>${app.file.name}</span></div>`
+                }else if(app.file.type=="raw data file"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-file"></i><span>${app.file.name}</span></div>`
+                }else if(app.file.type=="script"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-code"></i><span>${app.file.name}</span></div>`
+                }else if(app.file.type=="scratch 3 file"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-cat"></i><span>${app.file.name}</span></div>`
+                }else if(app.file.type=="comprimized folder"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-folder"></i><span>${app.file.name}</span></div>`
+                }else if(app.file.type=="android application"){
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-brands fa-android"></i><span>${app.file.name}</span></div>`
+                }else{
+                    app.e.view.innerHTML = `<div class="b"><i class="fa-solid fa-compact-disc"></i><span>${app.file.name}</span></div>`
+                }
+            },
+            e : {
+                view : document.querySelector(".fileflex .file")
+            },
+            audio : {
+                toggle : (el)=>{
+                    if(document.querySelector("audio").paused){
+                        document.querySelector("audio").play()
+                        el.classList.remove("fa-play");
+                        el.classList.add("fa-pause");
+                    }else{
+                        document.querySelector("audio").pause()
+                        el.classList.remove("fa-pause");
+                        el.classList.add("fa-play");
+                    }
+                },
+                ended : ()=>{
+                    const el = document.querySelector(".audio-controls i")
+                    el.classList.remove("fa-pause");
+                    el.classList.add("fa-play");
+                }
+            }
+        }
+        window.onload = ()=>{
+            app.serveContent();
+            document.title = app.file.name
+            setTimeout(()=>{
+                document.body.querySelector("div.content").style.opacity = "1";
+            },500)
+        }
+    </script>
+</body>
+</html>

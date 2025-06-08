@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="ScanMyUpload is an easy-to-use free online file system which is used for creating qr codes or links from files.">
+        <meta name="keyword" content="scanmyupload, qr, qrcode, file, createfromqr, file to qr, qr code, scan my upload, file sharing, share files">
+        <meta name="author" content="ScanMyUpload">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ScanMyUpload</title>
+        <link rel="icon" type="image/png" href="https://static.alwaysdata.com/aldjango/img/favicon.png">
+        <link rel="stylesheet" href="/static/styles/global.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="dropzone">
+            <div>
+                <i class="fa-solid fa-folder-plus"></i>
+                <span>Drop files here</span>
+            </div>
+        </div>
+        <div class="logo-design">
+            <i class="fa-solid fa-qrcode"></i>
+            ScanMyUpload
+        </div>
+        <div class="dialog">
+            <div class="dialog-window">
+                <i class="fa-solid fa-xmark" onclick="app.dialog.close()"></i>
+                <div class="dialog-header">Invalid file type</div>
+                <div class="dialog-description">We don't support this file type yet. This might be because of security or safety concerns.</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="upload" style="opacity: 0;">
+                <span class="header">Upload a file</span>
+                <span class="description">Create a QR Code that leads directly to your file. By uploading a file, you are agreeing with us uploading the file to a public server for a minimum of 14 days.</span>
+                <div class="upload-row">
+                    <input id="file-select" type="file" hidden="hidden" onchange="app.upload(this)">
+                    <label for="file-select">Select a file</label>
+                    <span class="mention-drop">or drop one here</span>
+                </div>
+            </div>
+            <div class="progress-bar hidden-after" style="display: none;">
+                <span class="header">Give us a sec...</span>
+                <span class="description">We're currently uploading your file to our servers. The speed of this progress depends on your file size.</span>
+                <div class="loading-outer">
+                    <div class="loading-bar">0%</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const app = {
+                reload:()=>{
+                    location.reload()
+                },
+                dialog : {
+                    open:(header,description)=>{
+                        app.dialog.header.textContent = header;
+                        app.dialog.description.textContent = description;
+                        app.dialog.dialog.style.display = "flex";
+                        setTimeout(()=>{
+                            app.dialog.dialog.style.opacity = "1";
+                            app.dialog.dialogWindow.style.marginBottom = "0"
+                        },10)
+                    },
+                    close:()=>{
+                        app.dialog.dialog.style.opacity = ""
+                        app.dialog.dialogWindow.style.marginBottom = ""
+                        setTimeout(()=>{
+                            app.dialog.dialog.style.display = ""
+                            app.reload()
+                        },200);
+                    },
+                    dialog:document.querySelector(".dialog"),
+                    dialogWindow:document.querySelector(".dialog-window"),
+                    description:document.querySelector(".dialog-description"),
+                    header:document.querySelector(".dialog-header")
+                },
+                e : {
+                    "dropzone":document.querySelector("div.dropzone"),
+                    "files":document.body.querySelector("#file-select")
+                },
+                drags : 0,
+                upload : (e)=>{
+                    document.querySelector(".upload").classList.add("hidden");
+                    setTimeout(()=>{
+                        document.querySelector(".upload").style.display = "none";
+                        document.querySelector(".progress-bar").style.display = "";
+                        setTimeout(()=>{
+                            app.fetchServer();
+                            document.querySelector(".progress-bar").classList.remove("hidden-after");
+                        },10)
+                    },200)
+                },
+                fetchServer : ()=>{
+                    const file = app.e.files.files[0];
+                    if (!file) return;
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'upload.php', true);
+                    xhr.upload.onprogress = e => {
+                        if (e.lengthComputable) {
+                            document.querySelector(".loading-bar").style.width = `calc(${e.loaded/e.total*100}% - 5px)`;
+                            document.querySelector(".loading-bar").textContent = Math.floor(e.loaded/e.total*100) + "%";
+                        }
+                    };
+                    xhr.onload = () => {
+                        const responseJSON = JSON.parse(xhr.responseText) ? JSON.parse(xhr.responseText) : {};
+                        if (xhr.status === 200) {
+                            setTimeout(()=>{
+                                location.href="/share/?file="+responseJSON.code;
+                            },900)
+                        } else {
+                            app.dialog.open(responseJSON.error,responseJSON.error_description)
+                        }
+                    };
+                    xhr.send(formData);
+                }
+            }
+            window.onload = ()=>{
+                document.body.querySelector("div.content div.upload").style.opacity = "1";
+            }
+            document.addEventListener('dragenter', (e) => {
+                app.drags++
+                app.e.dropzone.classList.add("dragover");
+            })
+            document.addEventListener('dragleave', (e) => {
+                app.drags--
+                if (app.drags === 0) {
+                    app.e.dropzone.classList.remove("dragover");
+                }
+            })
+            document.addEventListener('dragover', (e) => {
+                e.preventDefault()
+            })
+            document.addEventListener('drop', (e) => {
+                e.preventDefault()
+                app.e.dropzone.classList.remove("dragover");
+                app.drags = 0;
+                if (event.dataTransfer.files.length>0) {
+                    app.e.files.files = e.dataTransfer.files;
+                    app.upload(app.e.files)
+                }
+            })
+        </script>
+    </body>
+</html>

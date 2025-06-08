@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ScanMyUpload is an easy-to-use free online file system which is used for creating qr codes or links from files.">
+    <meta name="keyword" content="scanmyupload, qr, qrcode, file, createfromqr, file to qr, qr code, scan my upload, file sharing, share files">
+    <meta name="author" content="ScanMyUpload">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not found | ScanMyUpload</title>
+    <link rel="icon" type="image/png" href="https://static.alwaysdata.com/aldjango/img/favicon.png">
+    <link rel="stylesheet" href="/static/styles/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="logo-design" onclick="setTimeout(()=>{location.href='/'},100)">
+        <i class="fa-solid fa-qrcode"></i>
+        ScanMyUpload
+    </div>
+    <div class="content" style="opacity: 0;transition:150ms">
+        <span class="header">404 Not found</span>
+        <span class="description">We searched a while now but couldn't find anything matching this URL on our servers.</span>
+        <div class="upload-row">
+            <label for="file-select" onclick="setTimeout(()=>{location.href='/'},100)">Go home</label>
+        </div>
+    </div>
+    <script>
+        window.onload = ()=>{
+            document.body.querySelector("div.content").style.opacity = "1";
+        }
+    </script>
+</body>
+</html>

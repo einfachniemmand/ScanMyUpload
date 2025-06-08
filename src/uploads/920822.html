@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="de-de" oncontextmenu="return false">
+    <head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet">
+        <link rel="icon" href="/img/jochen.svg">
+        <title>
+            Vote for Jochen
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv='content-language' content='de-de'>
+        <meta name="description" content="Make the Class great again! More Infos..."
+    </head>
+    <body>
+        <div id="content">
+        <div id="content-watch">
+            <i class="fa-solid fa-circle-chevron-left control" onclick="lastImg()"></i>
+            <span id="counter">0 / 0</span>
+            <i class="fa-solid fa-circle-chevron-right control" onclick="nextImg()"></i>
+            </div>
+            <div id="pics">
+                <div id="scrollbar">
+                <div id="big-jochen" onclick="nextImg()" oncontextmenu="nextImg();return false">
+                    <img class="big" src="/img/jochen0.jpg" id="preview" onload="checkScore();" draggable="false" alt="Picture of Jochen der Rochen"  width="0" height="0">
+                    <img class="preload" id="preload" src="/img/jochen1.jpg" draggable="false" alt="[Not visible] Picture preload of Jochen der Rochen" height="0" width="0">
+                </div>
+                <div class="other-jochens">
+                    <img class="big" src="/img/jochen1.jpg" style="display:none" alt="[Not visible] Alternative design; not used" height="0" width="0">
+                </div>
+            </div>
+            </div>
+            <div id="text">
+                <div id="text-content">
+                    <div id="title-outer">
+                        <span id="title">Jochen der Rochen</span>
+                    </div>
+                        <span class="infos">
+                            <span class="qoute" id="qoute1">Jochen hat einen großen Traum, der ihn schon seit Monaten nicht mehr loslässt: Er möchte das Klassenmaskottchen der Klasse werden.
+                                </span>
+                                <br><br>
+                                <span id="text-transition">
+                                Für ihn ist es mehr als nur ein Titel oder eine lustige Aufgabe – es ist die Chance, sich als wichtiger Teil der Klassengemeinschaft zu fühlen. <i>„Einfach zu wissen, dass ich Teil dieser Gemeinschaft bin, würde mich überglücklich machen“</i>, sagt Jochen, während seine Augen vor Begeisterung leuchten.<br><br>
+Für Jochen bedeutet das, die Klasse zu repräsentieren, sie zu motivieren und in schwierigen Momenten zusammenzuhalten. Er stellt sich vor, wie er die Klasse bei Sportfesten anfeuert und bei Ausflügen für gute Laune sorgt. „Das Maskottchen ist wie der Herzschlag der Klasse“, erklärt er voller Überzeugung. <i>„Es verbindet uns und erinnert uns daran, dass wir zusammengehören, egal was passiert.“</i><br><br>
+Doch der Weg zu seinem Traum ist nicht leicht. Manche seiner Mitschüler verstehen nicht, warum ihm das so wichtig ist, und manchmal zweifelt Jochen selbst daran, ob er wirklich der Richtige für diese Aufgabe ist.<br><br></span>
+                <span class="ud" id="ud1">
+                    Warum Jochen?
+                </span>
+                <span class="u" id="u1">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Hat noch nie eine schlechte Note bekommen.
+                </span>
+                <span class="u" id="u2">
+                    <i class="fa-solid fa-poo"></i>
+                    Hinterlässt keinen Kot oder Urin.
+                </span>
+                <span class="u" id="u3">
+                    <i class="fa-solid fa-brain"></i>
+                    Hat nie schlechte Entscheidungen getroffen
+                </span>
+                <span class="u" id="u4">
+                    <i class="fa-solid fa-heart"></i>
+                    Ist sehr süß
+                </span>
+                <span class="u" id="u5">
+                    <i class="fa-solid fa-baseball"></i>
+                    Kann geworfen werden
+                </span>
+                <span class="u" id="u6">
+                    <i class="fa-solid fa-earth-europe"></i>
+                    Ist kein Alien
+                </span>
+                <span class="u" id="u7">
+                    <i class="fa-solid fa-face-grin-hearts"></i>
+                    Nett und hilfsbereit
+                </span>
+                <span class="u" id="u8">
+                    <i class="fa-solid fa-rainbow"></i>
+                    Nicht nationalsozialistisch veranlasst
+                </span>
+                <span class="u" id="u9">
+                    <i class="fa-solid fa-face-grin-wide"></i>
+                    Hat immer ein Lächeln im Gesicht
+                </span>
+                <span class="u" id="u10">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Verschwindet nicht spurlos
+                </span>
+                <span class="u" id="u11">
+                    <i class="fa-brands fa-tiktok"></i>
+                    Benutzt keine soziale Medien
+                </span>
+                <span class="u" id="u12">
+                    <i class="fa-solid fa-fire"></i>
+                    Ist absolut zuverlässig
+                </span>
+                <span class="u" id="u13">
+                    <i class="fa-solid fa-face-grin-squint-tears"></i>
+                    Sorgt immer für gute Laune
+                </span>
+                <span class="u" id="u14">
+                    <i class="fa-solid fa-bed"></i>
+                    Braucht keinen Schlaf
+                </span>
+                <span class="u" id="u15">
+                    <i class="fa-solid fa-ear-listen"></i>
+                    Kann gut zuhören
+                </span>
+                <span class="u" id="u16">
+                    <i class="fa-solid fa-bolt"></i>
+                    Verliert nie an Motivation
+                </span>
+                <span class="u" id="u17">
+                    <i class="fa-solid fa-face-grin-tongue-wink"></i>
+                    Macht keine schlechten Witze
+                </span>
+                <span class="u" id="u18">
+                    <i class="fa-solid fa-pen-fancy"></i>
+                    Erfindet keine Hausaufgaben-Ausreden
+                </span>
+                <span class="u" id="u19">
+                    <i class="fa-solid fa-bread-slice"></i>
+                    Klaut keine Pausensnacks
+                </span>
+                <span class="u" id="u20">
+                    <i class="fa-solid fa-mug-saucer"></i>
+                    Braucht keinen Kaffee, um morgens wach zu sein
+                </span>
+                <span class="u" id="u21">
+                    <i class="fa-solid fa-volume-low"></i>
+                    Schnarcht nicht und ist ruhig im Unterricht
+                </span>
+                <span class="u" id="u22">
+                    <i class="fa-solid fa-face-meh-blank"></i>
+                    Verpetzt euch nicht
+                </span>
+                <span class="u" id="u23">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                    Hat keine Angst vor Mathe
+                </span>
+                <span class="u" id="u24">
+                    <i class="fa-solid fa-film"></i>
+                    Gibt keine Spoiler zu filmen & Serien
+                </span>
+                <span class="u" id="u25">
+                    <i class="fa-solid fa-image-portrait"></i>
+                    Macht keine peinlichen Selfies
+                </span>
+                <span class="u" id="u26">
+                    <i class="fa-solid fa-book"></i>
+                    Braucht keine Nachhilfe
+                </span>
+                <span class="u" id="u27">
+                    <i class="fa-solid fa-car-side"></i>
+                    Steckt nie im Stau
+                </span>
+                <span class="u" id="u28">
+                    <i class="fa-solid fa-house-fire"></i>
+                    Löst keine Feueralarme aus
+                </span>
+                <span class="u" id="u29">
+                    <i class="fa-solid fa-hand-middle-finger"></i>
+                    Lästert nicht über andere
+                </span>
+                <span class="u" id="u30">
+                    <i class="fa-solid fa-face-laugh-squint"></i>
+                    Versteht jeden Witz - sogar die schlechten
+                </span>
+                <span class="u" id="u31">
+                    <i class="fa-solid fa-smoking"></i>
+                    Hat keine schlechten Angewohnheiten
+                </span>
+                <span class="u" id="u32">
+                    <i class="fa-solid fa-people-group"></i>
+                    Hat immer Zeit für Freunde
+                </span>
+                <span class="u" id="u33">
+                    <i class="fa-solid fa-school"></i>
+                    Versteht jedes Fach perfekt
+                </span>
+                <span class="u" id="u34">
+                    <i class="fa-solid fa-couch"></i>
+                    Verliert nie die Nerven in schwierigen Situationen
+                </span>
+                <span class="u" id="u35">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    Nimmt Kritik nie persönlich
+                </span>
+                <span class="u" id="u36">
+                    <i class="fa-solid fa-user-lock"></i>
+                    Kann Geheimnisse für immer Bewahren
+                </span>
+                <span class="u" id="u37">
+                    <i class="fa-solid fa-plane"></i>
+                    Ist der perfekte Reisebegleiter – kein Meckern, keine Extrawünsche
+                </span>
+                <div style="height:100px;"></div>
+                </span>
+                </div>
+            </div>
+        </div>
+        <div id="background"></div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Roboto+Slab:wght@100..900&display=swap');
+            i{
+                margin-right:10px;
+                margin-left:6px;
+                width:20px;
+                transition:250ms;
+            }
+            #qoute1,#text-transition,#ud1,.u {
+                opacity:0;
+                transition:350ms;
+            }
+            #content-watch {
+                color:rgba(80,90,120,0.8);
+                position:fixed;
+                bottom:0;
+                left:0;
+                width:45%;
+                display:flex;
+                justify-content:center;
+                font-family: "Host Grotesk",sans-serif;
+                font-weight:900;
+                align-items:center;
+                margin-bottom:15px;
+                opacity:0;
+                transition:400ms;
+            }
+            .control {
+                margin-left:10px;
+                margin-right:10px;
+                cursor:pointer;
+                transition:200ms;
+                color:rgba(80,90,120,0.7);
+            }
+            .control:hover {
+                color:rgba(80,90,120,0.9);
+            }
+            #scrollbar {
+                width:fit-content;
+            }
+            .preload {
+                display:none;
+            }
+            .infos {
+                font-family:"Funnel Display","Host Grotesk","Roboto Slab", Arial, sans-serif;
+                font-size:18px;
+                color:rgba(0,0,20,0.8);
+                margin-bottom:25px;
+                display:block;
+            }
+            .u {
+                display:block;
+                margin-bottom:3px;
+                user-select:none;
+            }
+            .u:hover i{
+                margin-right:15px;
+            }
+            body {
+                padding:0;
+                margin:0;
+                width:100%;
+                display:flex;
+                background:white;
+            }
+            .qoute {
+                font-weight:800;
+                font-size:19px;
+            }
+            .ud {
+                font-weight:800;
+                font-size:25px;
+                font-family:"Host Grotesk";
+            }
+            #background {
+                background-color: #8EC5FC;
+                background-image: linear-gradient(63deg, #8EC5FC 0%, #E0C3FC 100%);
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                opacity:0.6;
+                height:100%;
+                z-index:-1;
+            }
+            #title {
+                font-family:"Host Grotesk",Arial,sans-serif;
+                font-size:35px;
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+                --c:rgb(154, 216, 215);
+                --r:12px;
+                background: 
+                    radial-gradient(farthest-side,var(--c) 98%,#0000) bottom left,
+                    linear-gradient(var(--c) 0 0) bottom,
+                    radial-gradient(farthest-side,var(--c) 98%,#0000) bottom right;
+                background-size:var(--r) var(--r),calc(100% - var(--r)) var(--r);
+                background-repeat:no-repeat;
+                padding: 0 10px;
+                transition:500ms;
+                cursor:default;
+                user-select:none;
+            }
+            #title:hover {
+                padding:0 30px;
+            }
+            #title-outer {
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                margin-bottom:15px;
+                transition:350ms;
+                opacity:0;
+            }
+            ::selection {
+                background:rgba(25,50,255,0.3);
+                border-radius:15px;
+                transition:250ms;
+            }
+            #content {
+                display:flex;
+                width:100%;
+                padding:15px;
+            }
+            #big-jochen {
+                height:fit-content;
+                width:100%;
+                display:flex;
+                align-items:start;
+                justify-content:center;
+                padding-top:50%;
+                transition:300ms;
+                opacity:0;
+                position:sticky;
+                top:0;
+            }
+            img.big {
+                width:99%;
+                height:auto;
+                border-radius:35px;
+                margin-left:19%;
+                box-shadow: 0px 0px 50px rgba(0,0,0,0.2);
+                cursor:pointer;
+                transition:200ms;
+                margin-right:1%;
+                margin-bottom:1%;
+                margin-top:1%;
+            }
+            img.big:hover {
+                margin-left:18%;
+                margin-right:0%;
+                width:100%;
+                margin-bottom:0%;
+                margin-top:0%;
+            }
+            img.big:active {
+                margin-left:28%;
+                margin-right:10%;
+                width:80%;
+                margin-bottom:5%;
+                margin-top:5%;
+            }
+            .other-jochens{
+                height:fit-content;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                margin-top:5%;
+            }
+            #text {
+                width:125%;
+                min-height:100%;
+            }
+            #text-content {
+                padding-left:12%;
+                margin-top:30px;
+            }
+            img,iframe {
+                user-select:none;
+            }
+            #pics {
+                width:75%;
+                height:100%;
+                display:flex;
+                justify-content:center;
+            }
+            ::-webkit-scrollbar {
+                width: 9px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: rgb(236, 219, 253);
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: rgb(200,200,220);
+                transition:250ms;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: rgb(200,200,230);
+                border-radius:15px;
+            }
+            #background {
+                opacity:0;
+                transition:200ms;
+            }
+        </style>
+        <script>
+            function isMobile(){
+                return navigator.userAgent.match(/(iPhone|iPod|blackberry|android|Kindle|htc|lg|midp|mmp|mobile|nokia|opera mini|palm|pocket|psp|sgh|smartphone|symbian|treo mini|Playstation Portable|SonyEricsson|Samsung|MobileExplorer|PalmSource|Benq|Windows Phone|Windows Mobile|IEMobile|Windows CE|Nintendo Wii)/i);
+            }
+            function startupanimation () {
+                document.getElementById("background").style.opacity = "0.6";
+                document.getElementById("big-jochen").style.opacity = "1";
+                document.getElementById("big-jochen").style.paddingTop = "33.3%"
+                document.getElementById("content-watch").style.opacity = "1"
+                setTimeout(function(){
+                    document.getElementById("title-outer").style.opacity = "1"
+                },400)
+                setTimeout(function(){
+                    document.getElementById("qoute1").style.opacity = "1"
+                },450)
+                setTimeout(function(){
+                    document.getElementById("text-transition").style.opacity = "1"
+                },500)
+                setTimeout(function(){
+                    document.getElementById("ud1").style.opacity = "1"
+                    counterItems = 0;
+                    var interval2 = setInterval(function(){
+                        counterItems++;
+                        if(document.getElementById("u"+counterItems)){
+                            document.getElementById("u"+counterItems).style.opacity = "1";
+                        }else{
+                            clearInterval(interval2)
+                        }
+                    },50)
+                },550)
+            }
+            if(isMobile()){
+                document.getElementById("pics").style.height = "auto";
+                document.getElementById("text").style.width = "100%";
+                document.getElementById("content").style.display = "block";
+                document.getElementById("text-content").style.paddingLeft = "7px";
+                document.getElementById("pics").style.width = "85%";
+                document.getElementById("title").style.fontSize = "28px";
+                document.getElementById("big-jochen").style.paddingTop = "30px";
+                document.getElementById("content-watch").style.position = "static";
+                document.getElementById("content-watch").style.width = "100%";
+                document.getElementById("content-watch").style.marginBottom = "-50px";
+                document.getElementById("big-jochen").style.position = "static";
+            }
+            var index = 0;
+            var maxIndex = 41;
+            function checkScore () {
+                document.getElementById("counter").innerHTML = (index+1) + " / " + (maxIndex+1)
+            }
+            function nextImg(){
+                index++;
+                if(index > maxIndex){
+                    index = 0;
+                }
+                document.getElementById("preview").style.opacity = "0";
+                setTimeout(function(){
+                    document.getElementById("preview").src = "/img/jochen"+index+".jpg";
+                    document.getElementById("preload").src = "/img/jochen"+(index+1)+".jpg";
+                    document.getElementById("preview").style.opacity = "1";
+                },200)
+                checkScore()
+            }
+            function lastImg(){
+                index--;
+                if(index < 0){
+                    index = maxIndex;
+                }
+                document.getElementById("preview").style.opacity = "0";
+                setTimeout(function(){
+                    document.getElementById("preview").src = "/img/jochen"+index+".jpg";
+                    document.getElementById("preload").src = "/img/jochen"+(index-1)+".jpg";
+                    document.getElementById("preview").style.opacity = "1";
+                },200)
+                checkScore()
+            }
+            window.onload = function () {
+                setInterval(nextImg,35000);
+                document.getElementById("preview").style.maxHeight = window.innerHeight*0.65;
+            }
+        </script>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" style="height:1px;width:1px;position:fixed;top:0;left:0;" width="1px" height="1px" onload="setTimeout(function(){startupanimation()},250)" alt="[Not-visible] Lighthouse-Test-Image">
+    </body>
+</html>
